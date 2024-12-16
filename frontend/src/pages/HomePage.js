@@ -19,7 +19,7 @@ export default function HomePage() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 1 }}>
 
-                        <FlexColumnCenter styles={{ height: '100vh', p: 10 }}>
+                        <FlexColumnCenter styles={{ height: '100vh', p: 10, pl: 15 }}>
                             <Box sx={{ mb: 10 }}>
                                 <Typography variant="h2" fontWeight={400}>
                                     Samsung Galaxy S24 Ultra

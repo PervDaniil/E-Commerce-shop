@@ -1,6 +1,7 @@
 import { AppBar, Box, IconButton, Toolbar, Typography, Menu, MenuList, MenuItem, Divider, Avatar, Badge } from "@mui/material";
 import FlexCenter from "./layouts/flex/FlexCenter";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "./AuthProvider";
 import {
     ShoppingBag as ShoppingBasketIcon,
     Notifications as NotificationsIcon,
@@ -15,6 +16,7 @@ import {
 
 export default function Header() {
     const [menuAnchor, setMenuAnchor] = useState(null);
+    const { user } = useContext(AuthContext);
 
 
     const HandleMenuAnchor = (event) => {
@@ -54,12 +56,15 @@ export default function Header() {
                         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
                         sx={{ zIndex: '1000' }}>
                         <MenuList>
-                            <MenuItem sx={{ display: 'flex', gap: '0 1em' }} onClick={() => {window.location.href = "login/"}}>
-                                <Badge color="error" variant="dot" overlap="circular">
+                            <MenuItem sx={{ display: 'flex', gap: '0 1em' }} 
+                                onClick={() => {
+                                    user ? window.location.href = "profile/" : window.location.href =  "login/"
+                                }}>
+                                <Badge color={user ? 'success' : 'error'} variant="dot" overlap="circular">
                                     <Avatar />
                                 </Badge>
                                 <Typography>
-                                    Log in
+                                    {user ? (<>{user.username}</>) : (<>Sign in</>)}
                                 </Typography>
                             </MenuItem>
                             {MenuOptions.map((item, index) => (
@@ -83,11 +88,11 @@ export default function Header() {
 
 
 const MenuOptions = [
-    { option: 'Search', icon: <SearchIcon /> },
-    { option: 'Shop', icon: <ShopIcon />},
-    { option: 'Basket', icon: <ShoppingBasketIcon /> },
-    { option: 'Theme', icon: <ThemeIcon /> },
-    { option: 'Settings', icon: <SettingsIcon /> },
-    { option: 'Language', icon: <LanguageIcon /> },
-    { option: 'Notifications', icon: <NotificationsIcon /> }
+    { option: 'Search', icon: <SearchIcon color="secondary"/> },
+    { option: 'Shop', icon: <ShopIcon color="secondary"/>},
+    { option: 'Basket', icon: <ShoppingBasketIcon color="secondary"/> },
+    { option: 'Theme', icon: <ThemeIcon color="secondary"/> },
+    { option: 'Settings', icon: <SettingsIcon color="secondary"/> },
+    { option: 'Language', icon: <LanguageIcon color="secondary"/> },
+    { option: 'Notifications', icon: <NotificationsIcon color="secondary"/> }
 ]

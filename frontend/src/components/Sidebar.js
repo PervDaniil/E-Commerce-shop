@@ -1,12 +1,13 @@
 import {
-    Accordion, AccordionDetails, AccordionSummary, Checkbox, FormControlLabel,
+    Accordion, AccordionDetails, AccordionSummary, Checkbox, 
     Drawer, List, ListItem, Typography, useMediaQuery,
-    Divider, Chip, AccordionActions, TextField
+    Divider, Chip, AccordionActions, TextField,
 } from "@mui/material";
 import { ExpandMore as ExpandMoreIcon, Sort as SortIcon } from '@mui/icons-material';
 import FlexColumnCenter from "./layouts/flex/FlexColumnCenter";
 import SearchBar from "./SearchBar";
 import { useState } from "react";
+import FlexSpaceBetween from "./layouts/flex/FlexSpaceBetween";
 
 
 export default function Sidebar() {
@@ -63,7 +64,10 @@ const SortingAccordion = () => {
                             <>
                                 <Divider />
                                 <ListItem key={index}>
-                                    <FormControlLabel label={label} control={<Checkbox />} />
+                                    <FlexSpaceBetween styles={{ width: '100%'}}>
+                                        <Typography variant="body2" color="textSecondary">{label}</Typography>
+                                        <Checkbox key={index} />
+                                    </FlexSpaceBetween>
                                 </ListItem>
                             </>
                         ))}
@@ -141,13 +145,6 @@ const categories = {
         "HP",
         "Lenovo",
         "Asus"
-    ],
-    Tablets: [
-        "Apple",
-        "Samsung",
-        "Microsoft",
-        "Huawei",
-        "Amazon"
     ],
     Headphones: [
         "Apple",

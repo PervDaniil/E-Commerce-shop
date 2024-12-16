@@ -4,14 +4,15 @@ import FlexCenter from "../components/layouts/flex/FlexCenter";
 import FlexColumnCenter from "../components/layouts/flex/FlexColumnCenter";
 import { CheckBox, Home as HomeIcon, RemoveRedEye as ShowPasswordIcon } from "@mui/icons-material";
 import { Box, Button, TextField, Paper, Typography, Fab, IconButton, Tooltip, FormControlLabel, InputAdornment } from "@mui/material";
+import RoundedButton from "../components/custom/RoundedButton";
 
 
 export default function LoginPage() {
-    const { Login } = useContext(AuthContext); 
+    const { Login } = useContext(AuthContext);
     const [showPassword, setShowPassword] = useState(false);
     const [formData, setFormData] = useState({
-        'username': '',
-        'password': '',
+        username: '',
+        password: '',
     });
 
 
@@ -36,7 +37,7 @@ export default function LoginPage() {
             const response = await fetch('http://127.0.0.1:8000/api/v2/token/login/', {
                 method: 'POST',
                 headers: {
-                    'Content-Type' : 'application/json'
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formData)
             });
@@ -47,6 +48,10 @@ export default function LoginPage() {
         }
 
         PostFormData();
+        setFormData({
+            password: '',
+            username: ''
+        })
     }
 
     return (
@@ -56,12 +61,20 @@ export default function LoginPage() {
                     <Box component="form" p={3.5} onSubmit={HandleFormSubmit}>
                         <Typography variant="h3" fontWeight={100} gutterBottom>Sign in</Typography>
                         <Typography variant="body2" fontWeight={100}>All fields are required</Typography>
-                        <FlexColumnCenter styles={{ width: '380px', gap: '1em 0', mt: 5, mb: 12.5 }}>
-                            <TextField label="Username" fullWidth focused name="username" onChange={HandleInput} />
+                        <FlexColumnCenter styles={{ width: '380px', gap: '1em 0', mt: 5, mb: 10 }}>
                             <TextField
+                                name="username"
+                                label="Username"
+                                fullWidth focused
+                                value={formData.username}
+                                onChange={HandleInput} />
+                            <TextField
+                                name="password"
+                                label="Password"
+                                fullWidth focused
+                                value={formData.password}
                                 onChange={HandleInput}
                                 type={showPassword ? 'text' : 'password'}
-                                label="Password" fullWidth focused name="password"
                                 InputProps={{
                                     endAdornment: (
                                         <InputAdornment>
@@ -78,7 +91,14 @@ export default function LoginPage() {
                                     control={<CheckBox color="primary" />} />
                             </Box>
                         </FlexColumnCenter>
-                        <Button size="large" type="submit" variant="contained" fullWidth>Submit</Button>
+                        <Box textAlign="center" mb={2.5}>
+                            <Typography variant="body2" component="a" href="/register"
+                                color="textSecondary"
+                                sx={{ textDecoration: 'none'}}>
+                                Don't have an account? Sign Up
+                            </Typography>
+                        </Box>
+                        <RoundedButton size="large" type="submit" variant="contained" fullWidth>Submit</RoundedButton>
                     </Box>
                 </Paper>
             </FlexCenter>
