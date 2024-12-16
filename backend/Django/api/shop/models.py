@@ -1,3 +1,4 @@
+from .enums import CategoriesEnum
 from django.db import models
 
 
@@ -7,7 +8,11 @@ class Product(models.Model):
     description = models.CharField(max_length=512, null=False, blank=False)
     image = models.ImageField(null=True, blank=True, upload_to='products/images/')
     price = models.DecimalField(max_digits=12, decimal_places=2)
-    # tags = models.ManyToManyField()
+    category = models.TextField(
+        choices=CategoriesEnum.choices(),
+        default=CategoriesEnum.OTHER.name
+    )
+    
     
     def __str__(self):
         return f'{self.title}'
