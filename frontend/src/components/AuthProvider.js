@@ -25,6 +25,9 @@ export default function AuthProvider({ children }) {
                 if (response.ok) {
                     const data = await response.json();
                     setUser(data);
+                } 
+                else if (response.status === 401) {
+                    RefreshUserAccessJWT();
                 }
             } catch (error) {
                 console.log(error);
@@ -38,9 +41,37 @@ export default function AuthProvider({ children }) {
     }, []);
 
 
+    const RefreshUserAccessJWT = () => {
+        const fetchRefreshUserJWT = async () => {
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/v2/token/refresh/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type' : 'application/json',
+                    },
+                    body: JSON.stringify({'refresh' : UserRefreshToken()})
+                });
+    
+                const data = await response.json();
+                Login(data)
+
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        fetchRefreshUserJWT();
+    }
+
+
     const Login = (JWTToken) => {
         localStorage.setItem('refresh', JWTToken.refresh);
         localStorage.setItem('access', JWTToken.access);
+    }
+
+
+    const UserRefreshToken = () => {
+        return localStorage.getItem('refresh');
     }
 
 

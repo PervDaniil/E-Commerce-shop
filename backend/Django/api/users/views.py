@@ -70,6 +70,24 @@ class UserLoginView(APIView):
             return Response({'info' : 'INTERNAL SERVER ERROR!'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     
 
+class RefreshTokenView(APIView):
+    def post(self, request):
+        refresh = request.data.get('refresh')
+        
+        if not refresh:
+            return Response({'info' : 'Token is required!'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            refresh_token = RefreshToken(refresh)
+            access_token = refresh_token.access_token
+            return Response({'access' : str(access_token),
+                             'refresh' : str(refresh_token)}, status=status.HTTP_200_OK)
+        except Exception as Exc:
+            print(Exc)
+            return Response({'info' : 'INTERNAL_SERVER_ERROR'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            
+    
+
 class UserLogoutView(APIView):
     def post(self, request):
         pass
