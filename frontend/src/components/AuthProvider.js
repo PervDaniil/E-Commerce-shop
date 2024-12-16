@@ -15,7 +15,7 @@ export default function AuthProvider({ children }) {
             try {
                 if (!UserAccessToken) return;
                 
-                const response = await fetch('http://127.0.0.1:8000/api/v2/token/user/', {
+                const response = await fetch('/api/v2/token/user/', {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${UserAccessToken}`
@@ -44,7 +44,7 @@ export default function AuthProvider({ children }) {
     const RefreshUserAccessJWT = () => {
         const fetchRefreshUserJWT = async () => {
             try {
-                const response = await fetch('http://127.0.0.1:8000/api/v2/token/refresh/', {
+                const response = await fetch('/api/v2/token/refresh/', {
                     method: 'POST',
                     headers: {
                         'Content-Type' : 'application/json',

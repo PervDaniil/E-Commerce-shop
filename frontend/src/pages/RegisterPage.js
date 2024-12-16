@@ -34,7 +34,7 @@ export default function RegisterPage() {
         event.preventDefault();
 
         const PostFormData = async () => {
-            const response = await fetch('http://127.0.0.1:8000/api/v2/token/register/', {
+            const response = await fetch('/api/v2/token/register/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
