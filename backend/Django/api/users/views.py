@@ -5,7 +5,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework_simplejwt.exceptions import TokenBackendError, TokenError, InvalidToken 
+from rest_framework_simplejwt.exceptions import TokenError, InvalidToken 
+from rest_framework_simplejwt.token_blacklist.models import BlacklistedToken
 
 
 class UserRegisterView(APIView):
@@ -31,7 +32,6 @@ class UserRegisterView(APIView):
             
             return Response({'refresh' : str(refresh_token),
                              'access' : str(access_token)}, status=status.HTTP_201_CREATED)
-            
             
         except IntegrityError:
             return Response({'info' : 'User with this username already exists'}, status=status.HTTP_400_BAD_REQUEST)
@@ -82,15 +82,33 @@ class RefreshTokenView(APIView):
             access_token = refresh_token.access_token
             return Response({'access' : str(access_token),
                              'refresh' : str(refresh_token)}, status=status.HTTP_200_OK)
+        except TokenError:
+            return Response({'info' : 'Invalid refresh token format!'}, status=status.HTTP_400_BAD_REQUEST)
+            
+        except InvalidToken:
+            return Response({'info' : 'Invalid or expired refresh token!'}, status=status.HTTP_400_BAD_REQUEST)
+        
         except Exception as Exc:
-            print(Exc)
             return Response({'info' : 'INTERNAL_SERVER_ERROR'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
             
     
 
 class UserLogoutView(APIView):
     def post(self, request):
-        pass
+        refresh_token = request.data.get('refresh')
+        
+        if refresh_token:
+            try:
+                token = RefreshToken(refresh_token)
+                token.blacklist()
+                return Response({'info' : 'You have logged out successfully!'}, status=status.HTTP_200_OK)
+            
+            except InvalidToken:
+                return Response({'info' : 'Invalid refresh token!'}, status=status.HTTP_400_BAD_REQUEST)
+            
+            except Exception as Exc:
+                print(Exc)
+                return Response({'info' : 'INTERNAL_SERVER_ERROR'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class UserCredentialsView(APIView):
