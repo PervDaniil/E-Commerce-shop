@@ -7,6 +7,7 @@ import UserProfilePage from "./pages/UserProfilePage";
 import ThemeProvider from "./components/ThemeProvider";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import AboutPage from "./pages/AboutPage";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
 					<Routes>
 						<Route path="/" element={<HomePage />} />
 						<Route path="shop/" element={<ShopPage />} />
+						<Route path="about/" element={<AboutPage />} />
 						<Route path="login/" element={<LoginPage />} />
 						<Route path="register/" element={<RegisterPage />} />
 						<Route path="profile/" element={<ProtectedRoute Component={UserProfilePage} />} />

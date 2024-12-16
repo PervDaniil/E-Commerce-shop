@@ -6,7 +6,7 @@ import GridLayout from "../components/layouts/grid/GridLayout";
 import {
     Button, Card, CardActions, CardContent, CardMedia,
     Typography, Box, Backdrop, CircularProgress, Pagination,
-    Alert, Snackbar
+    Alert, Snackbar, SpeedDial, SpeedDialAction,
 } from "@mui/material";
 import {
     ShoppingBag as ShoppingBasketIcon,
@@ -17,6 +17,7 @@ import {
     DarkMode as ThemeIcon,
     Search as SearchIcon,
     Menu as MenuIcon,
+    Home as HomeIcon,
 } from '@mui/icons-material';
 
 
@@ -79,9 +80,20 @@ export default function ShopPage() {
                 </Box>
             </Box>
 
+            <Box sx={{ position: 'sticky', right: '1em', bottom: '1em' }}>
+                <SpeedDial
+                    ariaLabel="Home"
+                    icon={<HomeIcon />}
+                    onClick={() => window.location.href = '/'}
+                    sx={{ position: 'absolute', right: '1em', bottom: '1em' }}>
+                    <SpeedDialAction icon={<ShopIcon />} />
+                    <SpeedDialAction icon={<SearchIcon />} />
+                </SpeedDial>
+            </Box>
+
             {requestError &&
                 <Snackbar autoHideDuration={3000} open={true}
-                    anchorOrigin={{ horizontal: 'right', vertical: 'bottom'}}>
+                    anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}>
                     <Alert severity="error">{requestError}</Alert>
                 </Snackbar>}
         </React.Fragment>
