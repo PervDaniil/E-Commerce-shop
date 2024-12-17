@@ -3,10 +3,11 @@ import {
     Drawer, List, ListItem, Typography, useMediaQuery,
     Divider, Chip, AccordionActions, TextField,
 } from "@mui/material";
-import { ExpandMore as ExpandMoreIcon, Sort as SortIcon } from '@mui/icons-material';
-import FlexColumnCenter from "./layouts/flex/FlexColumnCenter";
-import SearchBar from "./SearchBar";
 import { useState } from "react";
+import SearchBar from "./SearchBar";
+import { ExpandMore as ExpandMoreIcon, Sort as SortIcon } from '@mui/icons-material';
+import { fetchProductsFilteredByCategory } from '../utils/fetchProducts';
+import FlexColumnCenter from "./layouts/flex/FlexColumnCenter";
 import FlexSpaceBetween from "./layouts/flex/FlexSpaceBetween";
 
 
@@ -35,6 +36,16 @@ const CategoriesChipsAccordion = () => {
     const [selectedCategoryChip, setSelectedCategoryChip] = useState(null);
     const chipCategories = ['Electronics', 'Clothes', 'Toys', 'HouseTools', 'Nature', 'Food', 'Cosmetics'];
 
+    
+    const HandleCategorySelect = (index) => {
+        const filterProducts = async () => {
+            const products = await fetchProductsFilteredByCategory(chipCategories[index]);
+            console.log(products);
+        }
+
+        setSelectedCategoryChip(index);
+        filterProducts();
+    }
 
     return (
         <ListItem sx={{ width: '320px' }}>
@@ -43,7 +54,7 @@ const CategoriesChipsAccordion = () => {
                 <AccordionDetails sx={{ gap: '0.5em', display: 'flex', flexWrap: 'wrap' }}>
                     {chipCategories.map((category, index) => (
                         <Chip label={category} key={index} color={selectedCategoryChip === index ? 'primary' : 'default'}
-                            onClick={() => setSelectedCategoryChip(index)} />
+                            onClick={() => HandleCategorySelect(index)} />
                     ))}
                 </AccordionDetails>
             </Accordion>
