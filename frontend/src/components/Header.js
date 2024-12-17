@@ -33,18 +33,19 @@ export default function Header() {
             <Toolbar>
                 <Box className="logo">
                     <Typography variant="h5" fontFamily="Azonix">
-                        E-WSKG
+                        Logo
                     </Typography>
                 </Box>
                 <FlexCenter styles={{ flex: 1, gap: '0 2em' }}>
                     {['Home', 'About', 'Products', 'Shop', 'Contacts', 'FAQ'].map(link => (
-                        <Typography variant="body1" color="textSecondary" component="a" href={link.toLowerCase()} sx={{ textDecoration: 'none' }}>
+                        <Typography variant="body1" color="textSecondary" component="a"
+                            href={'/' + link.toLowerCase()} sx={{ textDecoration: 'none' }}>
                             {link}
                         </Typography>
                     ))}
                 </FlexCenter>
                 <Box className="basket">
-                    <IconButton color="secondary">
+                    <IconButton color="secondary" href="/basket">
                         <ShopIcon />
                     </IconButton>
                     <IconButton onClick={HandleMenuAnchor}>
@@ -56,9 +57,9 @@ export default function Header() {
                         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
                         sx={{ zIndex: '1000' }}>
                         <MenuList>
-                            <MenuItem sx={{ display: 'flex', gap: '0 1em' }} 
+                            <MenuItem sx={{ display: 'flex', gap: '0 1em' }}
                                 onClick={() => {
-                                    user ? window.location.href = "profile/" : window.location.href =  "login/"
+                                    user ? window.location.href = "/profile" : window.location.href = "/login"
                                 }}>
                                 <Badge color={user ? 'success' : 'error'} variant="dot" overlap="circular">
                                     <Avatar />
@@ -88,11 +89,11 @@ export default function Header() {
 
 
 const MenuOptions = [
-    { option: 'Search', icon: <SearchIcon color="secondary"/> },
-    { option: 'Shop', icon: <ShopIcon color="secondary"/>},
-    { option: 'Basket', icon: <ShoppingBasketIcon color="secondary"/> },
-    { option: 'Theme', icon: <ThemeIcon color="secondary"/> },
-    { option: 'Settings', icon: <SettingsIcon color="secondary"/> },
-    { option: 'Language', icon: <LanguageIcon color="secondary"/> },
-    { option: 'Notifications', icon: <NotificationsIcon color="secondary"/> }
+    { option: 'Search', icon: <SearchIcon color="secondary" /> },
+    { option: 'Shop', icon: <ShopIcon color="secondary" /> },
+    { option: 'Basket', icon: <ShoppingBasketIcon color="secondary" /> },
+    { option: 'Theme', icon: <ThemeIcon color="secondary" /> },
+    { option: 'Settings', icon: <SettingsIcon color="secondary" /> },
+    { option: 'Language', icon: <LanguageIcon color="secondary" /> },
+    { option: 'Notifications', icon: <NotificationsIcon color="secondary" /> }
 ]
