@@ -24,6 +24,9 @@ export default function AboutPage() {
                         </Box>
                     </Box>
                 </motion.div>
+                <Box>
+                    <Box component="img" src=""/>
+                </Box>
             </Box>
         </Box>
     )

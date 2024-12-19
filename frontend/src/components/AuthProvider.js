@@ -15,7 +15,7 @@ export default function AuthProvider({ children }) {
             try {
                 if (!UserAccessToken) return;
                 
-                const response = await fetch('/api/v2/token/user/', {
+                const response = await fetch('/api/v4/user/credentials/', {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${UserAccessToken}`

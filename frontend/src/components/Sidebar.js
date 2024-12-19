@@ -34,7 +34,7 @@ export default function Sidebar() {
 
 const CategoriesChipsAccordion = () => {
     const [selectedCategoryChip, setSelectedCategoryChip] = useState(null);
-    const chipCategories = ['Electronics', 'Clothes', 'Toys', 'HouseTools', 'Nature', 'Food', 'Cosmetics'];
+    const chipCategories = ['Electronics', 'Clothes', 'Toys', 'HouseTools', 'Nature', 'Food', 'Cosmetics', 'Other'];
 
     
     const HandleCategorySelect = (index) => {
