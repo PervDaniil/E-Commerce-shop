@@ -38,10 +38,10 @@ export default function Header() {
                     </Typography>
                 </Box>
                 <FlexCenter styles={{ flex: 1, gap: '0 2em' }}>
-                    {['Home', 'About', 'Products', 'Shop', 'Contacts', 'FAQ'].map(link => (
+                    {links.map(option => (
                         <Typography variant="body1" color="textSecondary" component="a"
-                            href={'/' + link.toLowerCase()} sx={{ textDecoration: 'none' }}>
-                            {link}
+                            href={option.href} sx={{ textDecoration: 'none' }}>
+                            {option.title}
                         </Typography>
                     ))}
                 </FlexCenter>
@@ -98,4 +98,13 @@ const MenuOptions = [
     { option: 'Settings', icon: <SettingsIcon color="secondary" /> },
     { option: 'Language', icon: <LanguageIcon color="secondary" /> },
     { option: 'Notifications', icon: <NotificationsIcon color="secondary" /> }
+]
+
+const links = [
+    {title : 'Home', href: '/'},
+    {title : 'About', href: '/about'},
+    {title : 'Products', href: '/products'},
+    {title : 'Shop', href: 'shop/'},
+    {title : 'Contacts', href: '/contacts'},
+    {title : 'FAQ', href: '/faq'},
 ]

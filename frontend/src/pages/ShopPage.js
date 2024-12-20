@@ -1,5 +1,5 @@
 import Footer from "../components/Footer";
-import Sidebar from "../components/Sidebar";
+import ShopSidebar from "../components/ShopSidebar";
 import { AuthContext } from "../components/AuthProvider";
 import GridLayout from "../components/layouts/grid/GridLayout";
 import React, { useContext, useEffect, useState } from "react";
@@ -52,14 +52,14 @@ export default function ShopPage() {
 
 
     useEffect(() => {
-        const hook = async () => {
+        const productAddingFetch = async () => {
             const UserAccessToken = UserAccessJWT();
             const response = await addProductToCart(UserAccessToken, productID);
             console.log(response);
         }
 
         if (productID) {
-            hook();
+            productAddingFetch();
             setProductAdded(true);
 
             setTimeout(() => {
@@ -71,7 +71,7 @@ export default function ShopPage() {
 
     return (
         <React.Fragment>
-            <Sidebar />
+            <ShopSidebar />
             <Box sx={{ ml: '320px' }}>
                 <Backdrop open={loading} sx={{ ml: '320px' }}>
                     <CircularProgress color="primary" />
@@ -118,7 +118,7 @@ export default function ShopPage() {
                     icon={<HomeIcon />}
                     sx={{ position: 'absolute', right: '1em', bottom: '1em' }}>
                     <SpeedDialAction icon={<ShopIcon />}
-                        onClick={() => window.location.href = 'basket/'} />
+                        onClick={() => window.location.href = '/basket'} />
                     <SpeedDialAction icon={<SearchIcon />} />
                     <SpeedDialAction icon={<HomeIcon />}
                         onClick={() => window.location.href = '/'} />

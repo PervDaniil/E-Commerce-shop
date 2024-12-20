@@ -2,11 +2,11 @@ import { Search as SearchIcon} from "@mui/icons-material";
 import { Autocomplete, IconButton, InputAdornment, TextField, Tooltip } from "@mui/material";
 
 
-export default function SearchBar({ searchQuery, size = "small" }) {
+export default function SearchBar({ size = "small", options = [] }) {
     return (
         <Autocomplete 
         fullWidth
-        options={[]}
+        options={options}
         sx={{ '& .MuiOutlinedInput-root' : {borderRadius: '32px'}}}
         renderInput={(props) => (
             <TextField {...props} size={size} label="Search" InputProps={{
