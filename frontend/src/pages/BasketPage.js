@@ -1,15 +1,49 @@
-import React, { useState, useEffect } from "react";
-import fetchProducts from "../utils/fetchProducts";
+import { Delete as DeleteIcon, Payment, Wallet } from "@mui/icons-material";
+import { AuthContext } from "../components/AuthProvider";
 import BasketSidebar from "../components/BasketSidebar";
-import RoundedButton from '../components/custom/RoundedButton';
+import React, { useState, useEffect, useContext } from "react";
 import FlexCenter from "../components/layouts/flex/FlexCenter";
+import { deleteProductFromCart, fetchUserCartProducts } from "../utils/fetchProducts";
 import { Box, Button, Paper, Stack, Table, TableBody, TableCell, TableHead, TableRow, TextField, Typography } from "@mui/material";
-import { Payment, Wallet } from "@mui/icons-material";
 
 
 export default function BasketPage() {
-    const { products } = useFetchProducts();
+    const { UserAccessJWT } = useContext(AuthContext);
+    const [productID, setProductID] = useState(null);
+    const [products, setProducts] = useState([]);
 
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const UserAccessToken = UserAccessJWT();
+            try {
+                const products = await fetchUserCartProducts(UserAccessToken);
+                setProducts(products);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+
+    useEffect(() => {
+        const hook = async () => {
+            const UserAccessToken = UserAccessJWT();
+            const response = await deleteProductFromCart(UserAccessToken, productID);
+            console.log(response)
+        }
+
+        if (productID) {
+            hook();
+        }
+    }, [productID]);
+
+
+    const HandleDeleteProductButtonClick = (productID) => {
+        setProductID(productID);
+    }
 
     return (
         <React.Fragment>
@@ -26,6 +60,7 @@ export default function BasketPage() {
                                 <TableCell>Product</TableCell>
                                 <TableCell>amount</TableCell>
                                 <TableCell>price</TableCell>
+                                <TableCell>action</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -47,6 +82,14 @@ export default function BasketPage() {
                                         <Typography variant="body2" color="primary">
                                             {product.price}$
                                         </Typography>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Button color="error"
+                                            variant="contained"
+                                            endIcon={<DeleteIcon />}
+                                            onClick={() => HandleDeleteProductButtonClick(product.id)}>
+                                            Delete
+                                        </Button>
                                     </TableCell>
                                 </TableRow>
                             ))}
@@ -76,26 +119,3 @@ export default function BasketPage() {
         </React.Fragment>
     )
 }
-
-
-const useFetchProducts = () => {
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const products = await fetchProducts();
-                setProducts(products);
-            } catch (error) {
-                setError('Failed to load products');
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchData();
-    }, []);
-
-    return { products, loading, error };
-};

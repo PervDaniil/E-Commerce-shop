@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Sidebar from "../components/Sidebar";
-import fetchProducts from "../utils/fetchProducts";
+import { AuthContext } from "../components/AuthProvider";
 import GridLayout from "../components/layouts/grid/GridLayout";
+import React, { useContext, useEffect, useState } from "react";
 import {
     Button, Card, CardActions, CardContent, CardMedia,
     Typography, Box, Backdrop, CircularProgress, Pagination,
@@ -19,12 +19,21 @@ import {
     Menu as MenuIcon,
     Home as HomeIcon,
 } from '@mui/icons-material';
+import fetchProducts, { addProductToCart } from "../utils/fetchProducts";
 
 
 export default function ShopPage() {
+    const { UserAccessJWT } = useContext(AuthContext);
+    const [productAdded, setProductAdded] = useState(false);
     const [requestError, setRequestError] = useState(null);
+    const [productID, setProductID] = useState(null);
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
+
+
+    const HandleAddToCartClick = (productID) => {
+        setProductID(productID);
+    }
 
 
     useEffect(() => {
@@ -40,6 +49,24 @@ export default function ShopPage() {
 
         fetchData();
     }, []);
+
+
+    useEffect(() => {
+        const hook = async () => {
+            const UserAccessToken = UserAccessJWT();
+            const response = await addProductToCart(UserAccessToken, productID);
+            console.log(response);
+        }
+
+        if (productID) {
+            hook();
+            setProductAdded(true);
+
+            setTimeout(() => {
+                setProductAdded(false);
+            }, 3000);
+        }
+    }, [productID]);
 
 
     return (
@@ -64,7 +91,12 @@ export default function ShopPage() {
                                         <Typography variant="body2" color="primary">{product.price}$</Typography>
                                     </CardContent>
                                     <CardActions>
-                                        <Button variant="outlined" endIcon={<ShopIcon />}>Add to basket</Button>
+                                        <Button
+                                            variant="outlined"
+                                            endIcon={<ShopIcon />}
+                                            onClick={() => HandleAddToCartClick(product.id)}>
+                                            Add to basket
+                                        </Button>
                                         <Button variant="contained">Buy now</Button>
                                     </CardActions>
                                 </Card>
@@ -84,10 +116,12 @@ export default function ShopPage() {
                 <SpeedDial
                     ariaLabel="Home"
                     icon={<HomeIcon />}
-                    onClick={() => window.location.href = '/'}
                     sx={{ position: 'absolute', right: '1em', bottom: '1em' }}>
-                    <SpeedDialAction icon={<ShopIcon />} />
+                    <SpeedDialAction icon={<ShopIcon />}
+                        onClick={() => window.location.href = 'basket/'} />
                     <SpeedDialAction icon={<SearchIcon />} />
+                    <SpeedDialAction icon={<HomeIcon />}
+                        onClick={() => window.location.href = '/'} />
                 </SpeedDial>
             </Box>
 
@@ -95,6 +129,12 @@ export default function ShopPage() {
                 <Snackbar autoHideDuration={3000} open={true}
                     anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}>
                     <Alert severity="error">{requestError}</Alert>
+                </Snackbar>}
+
+            {productAdded &&
+                <Snackbar autoHideDuration={3000} open={true}
+                    anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}>
+                    <Alert severity="success">Product has added successfully!</Alert>
                 </Snackbar>}
         </React.Fragment>
     )

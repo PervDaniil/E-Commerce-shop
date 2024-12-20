@@ -1,12 +1,12 @@
+import { TextField } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../components/AuthProvider";
 import searchProducts from "../utils/searchProducts";
-import { TextField } from "@mui/material";
 
 
 export default function UserProfilePage() {
     const [inputData, setInputData] = useState('');
-    const { user } = useContext(AuthContext);
+    const { user, UserAccessJWT } = useContext(AuthContext);
 
 
     const HandleInput = (event) => {

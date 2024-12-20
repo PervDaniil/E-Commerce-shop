@@ -10,6 +10,7 @@ import {
     ShoppingCart as ShopIcon,
     DarkMode as ThemeIcon,
     Search as SearchIcon,
+    Logout as LogoutIcon,
     Menu as MenuIcon,
 } from '@mui/icons-material';
 
@@ -93,6 +94,7 @@ const MenuOptions = [
     { option: 'Shop', icon: <ShopIcon color="secondary" /> },
     { option: 'Basket', icon: <ShoppingBasketIcon color="secondary" /> },
     { option: 'Theme', icon: <ThemeIcon color="secondary" /> },
+    { option: 'Logout', icon: <LogoutIcon color="secondary"/>},
     { option: 'Settings', icon: <SettingsIcon color="secondary" /> },
     { option: 'Language', icon: <LanguageIcon color="secondary" /> },
     { option: 'Notifications', icon: <NotificationsIcon color="secondary" /> }

@@ -81,7 +81,7 @@ export default function AuthProvider({ children }) {
 
 
     return (
-        <AuthContext.Provider value={{ user, Login, loading }}>
+        <AuthContext.Provider value={{ user, Login, loading, UserAccessJWT }}>
             {children}
         </AuthContext.Provider>
     )

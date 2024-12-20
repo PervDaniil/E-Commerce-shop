@@ -34,7 +34,7 @@ export default function LoginPage() {
         event.preventDefault();
 
         const PostFormData = async () => {
-            const response = await fetch('/api/v2/token/login/', {
+            const response = await fetch('/api/v3/auth/login/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

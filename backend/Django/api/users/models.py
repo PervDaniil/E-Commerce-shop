@@ -1,7 +1,8 @@
-from django.db import models
-from api.shop.models import Product
 from django.contrib.auth.models import AbstractUser
 
 
 class CustomUser(AbstractUser):
-    basket = models.ManyToManyField(Product, null=True)
+    pass
+
+    def __str__(self):
+        return f'{self.id} - {self.username}'
