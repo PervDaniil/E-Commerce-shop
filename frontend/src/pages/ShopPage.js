@@ -40,7 +40,7 @@ export default function ShopPage() {
         const fetchData = async () => {
             try {
                 const products = await fetchProducts();
-                setProducts(products);
+                setProducts(products.results);
                 setLoading(!loading);
             } catch (error) {
                 setRequestError('Failed to fetch!');

@@ -1,121 +1,152 @@
-import { Delete as DeleteIcon, Payment, Wallet } from "@mui/icons-material";
-import { AuthContext } from "../components/AuthProvider";
-import BasketSidebar from "../components/BasketSidebar";
-import React, { useState, useEffect, useContext } from "react";
-import FlexCenter from "../components/layouts/flex/FlexCenter";
+import {
+    ShoppingCart as ShoppingCartIcon,
+    Payment as DebitCardIcon,
+    Delete as DeleteIcon,
+    Close as CloseIcon,
+    Add as AddIcon,
+} from "@mui/icons-material";
 import { deleteProductFromCart, fetchUserCartProducts } from "../utils/fetchProducts";
-import { Box, Button, Paper, Stack, Table, TableBody, TableCell, TableHead, TableRow, TextField, Typography } from "@mui/material";
-
+import React, { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../components/AuthProvider";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import { Box, Button, Card, CardContent, Typography, IconButton, Grid, Divider, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Avatar, SvgIcon } from "@mui/material";
+import FlexSpaceEvenly from "../components/layouts/flex/FlexSpaceEvenly";
+import FlexSpaceBetween from "../components/layouts/flex/FlexSpaceBetween";
 
 export default function BasketPage() {
     const { UserAccessJWT } = useContext(AuthContext);
     const [productID, setProductID] = useState(null);
     const [products, setProducts] = useState([]);
 
-
+    // Fetch user cart products on initial render or when UserAccessJWT changes
     useEffect(() => {
         const fetchData = async () => {
             const UserAccessToken = UserAccessJWT();
             try {
-                const products = await fetchUserCartProducts(UserAccessToken);
-                setProducts(products);
+                const fetchedProducts = await fetchUserCartProducts(UserAccessToken);
+                setProducts(fetchedProducts);
             } catch (error) {
                 console.log(error);
             }
         };
 
         fetchData();
-    }, []);
+    }, [UserAccessJWT]);
 
-
+    // Handle the deletion of a product from the cart
     useEffect(() => {
-        const hook = async () => {
-            const UserAccessToken = UserAccessJWT();
-            const response = await deleteProductFromCart(UserAccessToken, productID);
-            console.log(response)
-        }
+        if (!productID) return;
 
-        if (productID) {
-            hook();
-        }
+        const DeleteProductFromCartHandler = async () => {
+            const UserAccessToken = UserAccessJWT();
+            try {
+                const response = await deleteProductFromCart(UserAccessToken, productID);
+                console.log(response);
+                setProducts((prevProducts) => prevProducts.filter(product => product.id !== productID));
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        DeleteProductFromCartHandler();
     }, [productID]);
 
-
-    const HandleDeleteProductButtonClick = (productID) => {
-        setProductID(productID);
-    }
+    const HandleDeleteProductButtonClick = (id) => {
+        setProductID(id);
+    };
 
     return (
         <React.Fragment>
-            <Box sx={{
-                display: 'grid',
-                gridTemplateColumns: '320px 1fr 500px',
-            }}>
-                <BasketSidebar />
-                <Box className="tableContainer" sx={{ px: 10, py: 5 }}>
-                    <Table size="small">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Preview</TableCell>
-                                <TableCell>Product</TableCell>
-                                <TableCell>amount</TableCell>
-                                <TableCell>price</TableCell>
-                                <TableCell>action</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {products.map((product, index) => (
-                                <TableRow>
-                                    <TableCell>
-                                        <FlexCenter styles={{ height: '150px', width: '120px' }}>
-                                            <Box component="img" src={product.image} sx={{ objectFit: 'cover', width: '100%', borderRadius: '12px' }} />
-                                        </FlexCenter>
-                                    </TableCell>
-                                    <TableCell>
-                                        {product.title}
-                                        {product.description}
-                                    </TableCell>
-                                    <TableCell>
-                                        {product.id}
-                                    </TableCell>
-                                    <TableCell>
-                                        <Typography variant="body2" color="primary">
-                                            {product.price}$
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Button color="error"
-                                            variant="contained"
-                                            endIcon={<DeleteIcon />}
-                                            onClick={() => HandleDeleteProductButtonClick(product.id)}>
-                                            Delete
-                                        </Button>
-                                    </TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </Box>
-                <Paper sx={{ m: 3.5, my: 2, borderRadius: '12px', height: '95vh' }}>
-                    <Box className="flexWrapper" display="flex" flexDirection="column" sx={{ height: '95vh' }}>
-                        <Box sx={{ objectFit: 'cover', width: '100%', flex: 1, margin: 'auto' }}>
-                            <Box sx={{ width: '100%', filter: 'drop-shadow(4px 12px 24px black)' }}
-                                component="img" src="https://mbank.kg/media/mbusiness/img/m017t0061_march_2522_view02_%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F_1.png" />
-                        </Box>
-                        <Box>
-                            <Box sx={{ p: 5 }}>
-                                <TextField fullWidth focused label="Receiptent name" />
-                                <TextField focused label="Date" />
-                                <TextField focused label="CVV" />
-                                <TextField fullWidth focused label="Card number" />
-                            </Box>
-                        </Box>
-                        <Box sx={{ m: 3.5 }}>
-                            <Button size="large" fullWidth variant="contained" endIcon={<Payment />}>Payment</Button>
-                        </Box>
+            <Header />
+
+            <Box mt={7.5} sx={{ minHeight: '100vh'}}>
+                <Box display="flex" sx={{ flexDirection: { xs: "column", md: "row" }, gap: 3, padding: 3 }}>
+                    {/* User's Cart Products */}
+                    <Box sx={{ flex: 1 }}>
+                        <FlexSpaceBetween>
+                            <Typography variant="h4" gutterBottom fontWeight={500} color="textSecondary">
+                                Your Cart
+                            </Typography>
+                            <ShoppingCartIcon />
+                        </FlexSpaceBetween>
+
+                        <Divider sx={{ marginBottom: 2 }} />
+
+                        {products.length === 0 ? (
+                            <Typography variant="h6" color="textSecondary">
+                                Your cart is empty!
+                            </Typography>
+                        ) : (
+                            <TableContainer component={Paper}>
+                                <Table>
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell>
+                                                <Typography color="textSecondary">Product</Typography>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Typography color="textSecondary">Title</Typography>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Typography color="textSecondary">Price</Typography>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Typography color="textSecondary">Action</Typography>
+                                            </TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {products.map((product, index) => (
+                                            <TableRow key={product.id} sx={{ 
+                                                background: index % 2 === 0 ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.25)'
+                                            }}>
+                                                <TableCell>
+                                                    <Box display="flex" alignItems="center">
+                                                        <Avatar src={product.image} />
+                                                    </Box>
+                                                </TableCell>
+                                                <TableCell>{product.title}</TableCell>
+                                                <TableCell>${product.price}</TableCell>
+                                                <TableCell>
+                                                    <IconButton
+                                                        color="secondary"
+                                                        onClick={() => HandleDeleteProductButtonClick(product.id)}
+                                                    >
+                                                        <DeleteIcon />
+                                                    </IconButton>
+                                                </TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                        )}
                     </Box>
-                </Paper>
+
+                    <Box>
+                        <Paper sx={{ padding: 2, width: '420px' }}>
+                            <Box display="flex" flexDirection="column" alignItems="center">
+                                <Box sx={{ width: '120%', aspectRatio: '1/1' }}>
+                                    <img style={{ width: '100%' }} src="https://mbank.kg/media/mbusiness/img/m017t0061_march_2522_view02_%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F_1.png" />
+                                </Box>
+                                <Typography variant="body1" sx={{ marginBottom: 2 }}>
+                                    Total Price: $
+                                </Typography>
+
+                                <Button variant="contained" color="primary" fullWidth sx={{ marginBottom: 1 }}>
+                                    Proceed to Payment
+                                </Button>
+                                <Button variant="outlined" color="secondary" fullWidth>
+                                    Cancel
+                                </Button>
+                            </Box>
+                        </Paper>
+                    </Box>
+                </Box>
             </Box>
+
+            <Footer />
         </React.Fragment>
-    )
+    );
 }

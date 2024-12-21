@@ -15,7 +15,7 @@ export default function ThemeProvider({ children }) {
         palette: {
             mode: themeMode,
             primary: {
-                main: '#0095f6',
+                main: '#0095f6', //#bafc03 //#0095f6
             },
             secondary: {
                 main: '#777777',

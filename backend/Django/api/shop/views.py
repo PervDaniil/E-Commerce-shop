@@ -1,4 +1,4 @@
-from .serializers import ProductModelSerializer, UserProductsCartSerializer
+from .serializers import ProductModelSerializer, UserProductsCartSerializer, ProductModelPagination
 from rest_framework.viewsets import ReadOnlyModelViewSet
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -8,8 +8,9 @@ from rest_framework import status
 
 
 class ProductModelViewSet(ReadOnlyModelViewSet):
-    queryset = Product.objects.all()
+    pagination_class = ProductModelPagination
     serializer_class = ProductModelSerializer
+    queryset = Product.objects.all()
     
     
 class ProductsSearchFilterView(APIView):
