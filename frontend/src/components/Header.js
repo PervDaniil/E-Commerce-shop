@@ -91,20 +91,20 @@ export default function Header() {
 
 const MenuOptions = [
     { option: 'Search', icon: <SearchIcon color="secondary" /> },
-    { option: 'Shop', icon: <ShopIcon color="secondary" /> },
-    { option: 'Basket', icon: <ShoppingBasketIcon color="secondary" /> },
+    { option: 'Shop', icon: <ShopIcon color="secondary" />, href: '/shop' },
+    { option: 'Basket', icon: <ShoppingBasketIcon color="secondary" />, href: '/basket' },
     { option: 'Theme', icon: <ThemeIcon color="secondary" /> },
-    { option: 'Logout', icon: <LogoutIcon color="secondary"/>},
+    { option: 'Logout', icon: <LogoutIcon color="secondary" /> },
     { option: 'Settings', icon: <SettingsIcon color="secondary" /> },
     { option: 'Language', icon: <LanguageIcon color="secondary" /> },
     { option: 'Notifications', icon: <NotificationsIcon color="secondary" /> }
 ]
 
 const links = [
-    {title : 'Home', href: '/'},
-    {title : 'About', href: '/about'},
-    {title : 'Products', href: '/products'},
-    {title : 'Shop', href: 'shop/'},
-    {title : 'Contacts', href: '/contacts'},
-    {title : 'FAQ', href: '/faq'},
+    { title: 'Home', href: '/' },
+    { title: 'About', href: '/about' },
+    { title: 'Products', href: '/products' },
+    { title: 'Shop', href: 'shop/' },
+    { title: 'Contacts', href: '/contacts' },
+    { title: 'FAQ', href: '/faq' },
 ]
