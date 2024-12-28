@@ -59,31 +59,33 @@ class UserProductsCartView(APIView):
         if not productID:
             return Response({'info' : 'Product ID is missed!'}, status=status.HTTP_400_BAD_REQUEST)
         
-        if productID:
-            try:
-                product = Product.objects.get(id = productID)
-            except Product.DoesNotExist:
-                return Response({'info' : 'Invalid product ID!'}, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            product = Product.objects.get(id = productID)
+        except Product.DoesNotExist:
+            return Response({'info' : 'Invalid product ID!'}, status=status.HTTP_400_BAD_REQUEST)
             
-            cart = Cart.get_or_create_cart(user=request.user)
+        cart = Cart.get_or_create_cart(user=request.user)
+        
+        if product not in cart.products.all():
             cart.add_product(product)
             return Response({'info' : 'Product has been successfully added to user cart!'}, status=status.HTTP_201_CREATED)
-    
+        return Response({'info' : 'Product had been already added to user cart!'}, status=status.HTTP_200_OK)
+
+        
     
     def delete(self, request):
         productID = request.data.get('productID')
         
         if not productID:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+            return Response({'info' : 'Product ID is missed!'}, status=status.HTTP_400_BAD_REQUEST)
         
         try:
             cart = Cart.get_or_create_cart(user=request.user)
             product = cart.products.get(id=productID)
             cart.products.remove(product)
             return Response({'info', 'Product has removed from cart successfully!'}, status=status.HTTP_200_OK)
-        except Exception as Exc:
-            print(Exc)
-            return Response({'info' : ''}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        except Exception:
+            return Response({'info' : 'Internal server error!'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
             
         
         
