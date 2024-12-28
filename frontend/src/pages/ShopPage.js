@@ -1,3 +1,4 @@
+import redirect from "../utils/redirect";
 import Footer from "../components/Footer";
 import ShopSidebar from "../components/ShopSidebar";
 import { AuthContext } from "../components/AuthProvider";
@@ -16,6 +17,7 @@ import {
     Search as SearchIcon,
     Home as HomeIcon,
 } from '@mui/icons-material';
+import SwiperComponent from "../components/Swiper";
 
 
 export default function ShopPage() {
@@ -26,6 +28,7 @@ export default function ShopPage() {
         <>
             <ShopSidebar />
             <Box ml="320px">
+                <TopProductsSection />
                 <CardsGridLayout
                     loading={loading}
                     setLoading={setLoading} />
@@ -159,10 +162,10 @@ const FAB = () => {
                 icon={<HomeIcon />}
                 sx={{ position: 'absolute', right: '1em', bottom: '1em' }}>
                 <SpeedDialAction icon={<ShopIcon />}
-                    onClick={() => window.location.href = '/basket'} />
+                    onClick={() => redirect('/basket')} />
                 <SpeedDialAction icon={<SearchIcon />} />
                 <SpeedDialAction icon={<HomeIcon />}
-                    onClick={() => window.location.href = '/'} />
+                    onClick={() => redirect('/')} />
             </SpeedDial>
         </Box>
     )
@@ -171,8 +174,10 @@ const FAB = () => {
 
 const TopProductsSection = () => {
     return (
-        <Box>
+        <Box sx={{ my: 10 }}>
+            <SwiperComponent>
 
+            </SwiperComponent>
         </Box>
     )
 }
