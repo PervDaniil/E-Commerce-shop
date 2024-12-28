@@ -3,8 +3,7 @@ from rest_framework.routers import DefaultRouter
 from .views import (
     ProductModelViewSet,
     UserProductsCartView,
-    ProductsSearchFilterView,
-    ProductsCategoryFilterView,
+    ProductsFilterViewSet
 )
 
 
@@ -15,6 +14,5 @@ APIRouter.register('products', ProductModelViewSet)
 urlpatterns = [
     path('', include(APIRouter.urls)),
     path('user-cart/', UserProductsCartView.as_view()),
-    path('products/filter/search/', ProductsSearchFilterView.as_view()),
-    path('products/filter/category/', ProductsCategoryFilterView.as_view()),
+    path('products/filter/', ProductsFilterViewSet.as_view()),
 ]

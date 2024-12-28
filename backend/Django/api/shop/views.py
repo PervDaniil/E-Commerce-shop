@@ -1,4 +1,4 @@
-from .serializers import ProductModelSerializer, UserProductsCartSerializer, ProductModelPagination
+from .serializers import ProductModelSerializer, ProductModelPagination
 from rest_framework.viewsets import ReadOnlyModelViewSet
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -12,29 +12,35 @@ class ProductModelViewSet(ReadOnlyModelViewSet):
     serializer_class = ProductModelSerializer
     queryset = Product.objects.all()
     
-    
-class ProductsSearchFilterView(APIView):
-    def post(self, request):
-        query = request.data.get('query', '')
-        
-        if query:
-            products = Product.objects.filter(title__icontains=query)
-            serializer = ProductModelSerializer(products, many=True)     
-                   
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response({'products': ''})
-    
-    
-class ProductsCategoryFilterView(APIView):
-    def post(self, request):
+
+class ProductsFilterViewSet(APIView):
+    def get(self, request):
+        queryset = Product.objects.all()
+
+        search_title = request.data.get('search_title')
+        min_price = request.data.get('min_price')
+        max_price = request.data.get('max_price')
         category = request.data.get('category')
+        brand = request.data.get('brand')
         
-        if category:
-            products = Product.objects.filter(category=category)
-            serializer = ProductModelSerializer(products, many=True)
+        if search_title:
+            queryset.filter(title__icontains=search_title)
+        
+        if min_price:
+            queryset.filter(price__gte=min_price)
+        
+        if max_price:
+            queryset.filter(price__lte=max_price)
             
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response({'products' : ''})
+        if category:
+            queryset.filter(category=category)
+            
+        if brand:
+            queryset.filter(brand=brand)
+            
+        serializer = ProductModelSerializer(queryset, many=True)
+        
+        return Response(serializer.data, status=status.HTTP_200_OK)
         
         
 class UserProductsCartView(APIView):

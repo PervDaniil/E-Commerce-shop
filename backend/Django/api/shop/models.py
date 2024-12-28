@@ -8,6 +8,7 @@ class Product(models.Model):
     description = models.CharField(max_length=512, null=False, blank=False)
     image = models.ImageField(null=True, blank=True, upload_to='products/images/')
     price = models.DecimalField(max_digits=12, decimal_places=2)
+    brand = models.CharField(max_length=256, blank=True)
     category = models.TextField(
         choices=CategoriesEnum.choices(),
         default=CategoriesEnum.OTHER.name
