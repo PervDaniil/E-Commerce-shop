@@ -1,3 +1,4 @@
+import redirect from "../utils/redirect";
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../components/AuthProvider";
 import FlexCenter from "../components/layouts/flex/FlexCenter";
@@ -43,8 +44,9 @@ export default function LoginPage() {
             });
 
             const responseBody = await response.json();
-            console.log(responseBody);
+
             Login(responseBody);
+            redirect('/');
         }
 
         PostFormData();

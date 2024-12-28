@@ -13,6 +13,7 @@ import {
     Logout as LogoutIcon,
     Menu as MenuIcon,
 } from '@mui/icons-material';
+import redirect from "../utils/redirect";
 
 
 export default function Header() {
@@ -72,7 +73,9 @@ export default function Header() {
                             {MenuOptions.map((item, index) => (
                                 <>
                                     <Divider />
-                                    <MenuItem key={index} onClick={HandleMenuClose} sx={{ display: 'flex', gap: '0 1em' }}>
+                                    <MenuItem key={index} onClick={() =>
+                                        item.href !== undefined ? redirect(item.href) : HandleMenuClose()}
+                                        sx={{ display: 'flex', gap: '0 1em' }}>
                                         {item.icon}
                                         <Typography component="div" variant="body1" >
                                             {item.option}
