@@ -13,7 +13,7 @@ export default function HomePage() {
         <React.Fragment>
             <Header />
             <Box className="HeadSection" sx={{ py: 7.5 }}>
-                <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', background: 'linear-gradient(45deg, black,rgb(67, 66, 64))' }}>
+                <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', background: 'linear-gradient(45deg, black, rgb(67, 66, 64))' }}>
                     <motion.div
                         initial={{ opacity: 0, x: 200 }}
                         animate={{ opacity: 1, x: 0 }}

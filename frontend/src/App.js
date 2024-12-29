@@ -8,6 +8,7 @@ import AuthProvider from "./components/AuthProvider";
 import UserProfilePage from "./pages/UserProfilePage";
 import ThemeProvider from "./components/ThemeProvider";
 import ProtectedRoute from "./components/ProtectedRoute";
+import ProductPreviewPage from "./pages/ProductPreviewPage";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 
@@ -24,6 +25,7 @@ function App() {
 						<Route path="register/" element={<RegisterPage />} />
 						<Route path="basket/" element={<ProtectedRoute Component={BasketPage} />} />
 						<Route path="profile/" element={<ProtectedRoute Component={UserProfilePage} />} />
+						<Route path="product-preview/" element={<ProtectedRoute Component={ProductPreviewPage}/>}/>
 					</Routes>
 				</BrowserRouter>
 			</AuthProvider>

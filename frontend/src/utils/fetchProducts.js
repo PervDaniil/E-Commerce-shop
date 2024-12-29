@@ -9,13 +9,13 @@ export default async function fetchProducts() {
 }
 
 
-export async function fetchProductsFilteredByCategory(category) {
-    const response = await fetch('/api/v1/shop/products/filter/category/', {
+export async function fetchFilteredProducts(filterParams) {
+    const response = await fetch('/api/v1/shop/product/filter/', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type' : 'application/json',
         },
-        body: JSON.stringify({ 'category': category })
+        body: JSON.stringify(filterParams)
     });
 
     if (response.ok) {

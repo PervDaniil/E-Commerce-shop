@@ -1,8 +1,7 @@
-import {
-    Drawer, List, ListItem, useMediaQuery,
-} from "@mui/material";
-import SearchBar from "./SearchBar";
 import FlexColumnCenter from "./layouts/flex/FlexColumnCenter";
+import {
+    Drawer, List, useMediaQuery,
+} from "@mui/material";
 
 
 export default function Sidebar({ children }) {
@@ -15,9 +14,6 @@ export default function Sidebar({ children }) {
         }}>
             <List>
                 <FlexColumnCenter>
-                    <ListItem>
-                        <SearchBar />
-                    </ListItem>
                     { children }
                 </FlexColumnCenter>
             </List>
