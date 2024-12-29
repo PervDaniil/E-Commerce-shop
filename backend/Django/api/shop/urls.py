@@ -14,5 +14,5 @@ APIRouter.register('products', ProductModelViewSet)
 urlpatterns = [
     path('', include(APIRouter.urls)),
     path('user-cart/', UserProductsCartView.as_view()),
-    path('products/filter/', ProductsFilterViewSet.as_view()),
+    path('product/filter/', ProductsFilterViewSet.as_view()),
 ]

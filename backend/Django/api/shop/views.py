@@ -14,7 +14,7 @@ class ProductModelViewSet(ReadOnlyModelViewSet):
     
 
 class ProductsFilterViewSet(APIView):
-    def get(self, request):
+    def post(self, request):
         queryset = Product.objects.all()
 
         search_title = request.data.get('search_title')
@@ -24,19 +24,19 @@ class ProductsFilterViewSet(APIView):
         brand = request.data.get('brand')
         
         if search_title:
-            queryset.filter(title__icontains=search_title)
+            queryset = queryset.filter(title__icontains=search_title)
         
         if min_price:
-            queryset.filter(price__gte=min_price)
+            queryset = queryset.filter(price__gte=min_price)
         
         if max_price:
-            queryset.filter(price__lte=max_price)
+            queryset = queryset.filter(price__lte=max_price)
             
         if category:
-            queryset.filter(category=category)
+            queryset = queryset.filter(category=category)
             
         if brand:
-            queryset.filter(brand=brand)
+            queryset = queryset.filter(brand=brand)
             
         serializer = ProductModelSerializer(queryset, many=True)
         
