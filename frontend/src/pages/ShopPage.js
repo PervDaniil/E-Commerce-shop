@@ -2,7 +2,7 @@ import redirect from "../utils/redirect";
 import Footer from "../components/Footer";
 import Sidebar from "../components/Sidebar";
 import SearchBar from "../components/SearchBar";
-import { AuthContext } from "../components/AuthProvider";
+import { AuthContext } from "../providers/AuthProvider";
 import GridLayout from "../components/layouts/grid/GridLayout";
 import React, { useContext, useEffect, useState } from "react";
 import FlexSpaceEvenly from "../components/layouts/flex/FlexSpaceEvenly";

@@ -1,7 +1,7 @@
 import { AppBar, Box, IconButton, Toolbar, Typography, Menu, MenuList, MenuItem, Divider, Avatar, Badge } from "@mui/material";
+import { AuthContext } from "../providers/AuthProvider";
 import FlexCenter from "./layouts/flex/FlexCenter";
 import { useContext, useState } from "react";
-import { AuthContext } from "./AuthProvider";
 import {
     ShoppingBag as ShoppingBasketIcon,
     Notifications as NotificationsIcon,

@@ -1,7 +1,7 @@
 import Header from "../components/Header";
 import Footer from '../components/Footer';
 import React, { useContext } from "react";
-import { AuthContext } from "../components/AuthProvider";
+import { AuthContext } from "../providers/AuthProvider";
 import { Box, Typography, Avatar, Button, Divider } from '@mui/material';
 
 

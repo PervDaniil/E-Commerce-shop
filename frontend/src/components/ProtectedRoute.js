@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Navigate } from 'react-router-dom';
-import { AuthContext } from './AuthProvider';
 import LoadingBackdrop from "./LoadingBackdrop";
+import { AuthContext } from '../providers/AuthProvider';
 
 
 export default function ProtectedRoute({ Component, ...props }) {

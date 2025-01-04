@@ -3,7 +3,7 @@ import { deleteProductFromCart, fetchUserCartProducts } from "../utils/fetchProd
 import FlexSpaceBetween from "../components/layouts/flex/FlexSpaceBetween";
 import FlexCenter from "../components/layouts/flex/FlexCenter";
 import React, { useState, useEffect, useContext } from "react";
-import { AuthContext } from "../components/AuthProvider";
+import { AuthContext } from "../providers/AuthProvider";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import {

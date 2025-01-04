@@ -1,6 +1,6 @@
 import redirect from "../utils/redirect";
 import React, { useContext, useState } from "react";
-import { AuthContext } from "../components/AuthProvider";
+import { AuthContext } from "../providers/AuthProvider";
 import FlexCenter from "../components/layouts/flex/FlexCenter";
 import FlexColumnCenter from "../components/layouts/flex/FlexColumnCenter";
 import { CheckBox, Home as HomeIcon, RemoveRedEye as ShowPasswordIcon } from "@mui/icons-material";
