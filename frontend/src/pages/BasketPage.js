@@ -1,4 +1,4 @@
-import { Box, Button, Typography, IconButton, Divider, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Avatar, Drawer, styled, Menu, MenuItem } from "@mui/material";
+import { Box, Button, Typography, IconButton, Divider, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Avatar, Drawer, styled, Menu, MenuItem, SpeedDial, SpeedDialAction } from "@mui/material";
 import { deleteProductFromCart, fetchUserCartProducts } from "../utils/fetchProducts";
 import FlexSpaceBetween from "../components/layouts/flex/FlexSpaceBetween";
 import FlexCenter from "../components/layouts/flex/FlexCenter";
@@ -7,15 +7,12 @@ import { AuthContext } from "../components/AuthProvider";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import {
-    ShoppingCart as ShoppingCartIcon,
     ViewColumn as SwapToGridIcon,
     Payment as DebitCardIcon,
-    Cancel as CancelIcon,
     Delete as DeleteIcon,
-    Close as CloseIcon,
     MoreHoriz as MoreIcon,
+    Home as HomeIcon,
     Add as AddIcon,
-    CheckBox,
 } from "@mui/icons-material";
 
 
@@ -29,12 +26,13 @@ export default function BasketPage() {
                     <Box flex="1" padding={3}>
                         <CartProductsLayout />
                     </Box>
-                    <Box sx={{ width: '420px'}}>
+                    <Box sx={{ width: '420px' }}>
                         <PaymentInfoLayout />
                     </Box>
                 </Box>
             </Box>
 
+            <FAB />
             <Footer />
         </React.Fragment>
     );
@@ -98,7 +96,7 @@ const CartProductsLayout = () => {
         <>
             <FlexSpaceBetween>
                 <Typography variant="h4" gutterBottom fontWeight={500} color="textSecondary">
-                    Your Cart
+                    Cart
                 </Typography>
                 <Box>
                     <IconButton>
@@ -171,19 +169,19 @@ const PaymentInfoLayout = () => {
         <Drawer anchor="right" variant="permanent" sx={{
             '& .MuiDrawer-paper': {
                 background: 'transparent',
-                boxShadow: 'none', 
+                boxShadow: 'none',
                 border: 'none',
                 zIndex: 1,
             },
-        }}> 
+        }}>
             <Paper sx={{ mt: 10, mr: 1, padding: 2, width: '420px' }}>
                 <Box display="flex" flexDirection="column" alignItems="center" overflow="hidden">
                     <FlexCenter styles={{
                         width: '100%', aspectRatio: '1/1', borderRadius: '12px 172px',
                         background: 'linear-gradient(45deg, #0f0f0f, #242424)', boxShadow: 'inset 0px 0px 24px #0f0f0f'
                     }}>
-                        <img style={{ width: '120%', filter: 'drop-shadow(0px 10px 12px black)' }} 
-                        src="https://mbank.kg/media/mbusiness/img/m017t0061_march_2522_view02_%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F_1.png" />
+                        <img style={{ width: '120%', filter: 'drop-shadow(0px 10px 12px black)' }}
+                            src="https://mbank.kg/media/mbusiness/img/m017t0061_march_2522_view02_%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F_1.png" />
                     </FlexCenter>
 
                     <Box width="100%">
@@ -201,7 +199,7 @@ const PaymentInfoLayout = () => {
                             </Box>
                             <Box flex="1" display="flex">
                                 <img src="https://play-lh.googleusercontent.com/44bsXoO-WFVICrm_licbHOWJrmkQiT8WzvopporQ3hH2F_qVT3poSRXLABpHKKg4kYw=s256"
-                                    style={{ margin: 'auto', marginTop: '1em', width: '50%', objectFit: 'cover', borderRadius: '12px' }}/>
+                                    style={{ margin: 'auto', marginTop: '1em', width: '50%', objectFit: 'cover', borderRadius: '12px' }} />
                             </Box>
                         </FlexSpaceBetween>
                     </Box>
@@ -215,5 +213,14 @@ const PaymentInfoLayout = () => {
                 </Box>
             </Paper>
         </Drawer>
+    )
+}
+
+const FAB = () => {
+    return (
+        <SpeedDial ariaLabel="Home" icon={<HomeIcon />} sx={{ position: 'absolute', bottom: 15, left: 15 }}>
+            <SpeedDialAction icon={<AddIcon />} />
+            <SpeedDialAction icon={<HomeIcon />} />
+        </SpeedDial>
     )
 }
