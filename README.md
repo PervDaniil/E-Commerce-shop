@@ -1,9 +1,9 @@
-![screencapture-localhost-3000-2024-12-14-23_06_47](https://github.com/user-attachments/assets/ce7fbfe2-fad1-4b62-b770-8345527a99bc)
+![Снимок экрана 2025-01-04 191130](https://github.com/user-attachments/assets/b33760bf-de38-4fa2-87eb-c2df29b9acb3)![screencapture-localhost-3000-2024-12-14-23_06_47](https://github.com/user-attachments/assets/ce7fbfe2-fad1-4b62-b770-8345527a99bc)
 ____________________________________________________________________________________________________________________________________
 
 ![Снимок экрана 2025-01-02 023131](https://github.com/user-attachments/assets/5dde58a4-6d85-4aef-ab17-2fbd1197229e)
 ____________________________________________________________________________________________________________________________________
-![Снимок экрана 2025-01-02 021816](https://github.com/user-attachments/assets/dd4aaaac-6787-4de1-ba68-e4f6d4a2ce0e)
+![Снимок экрана 2025-01-04 191130](https://github.com/user-attachments/assets/c4f5e896-9df8-499b-8e3c-252c2376fe75)
 ____________________________________________________________________________________________________________________________________
 
 # E-Commerce Webshop Project
