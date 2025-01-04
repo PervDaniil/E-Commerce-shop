@@ -3,7 +3,6 @@ import { motion } from 'motion/react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Box, Typography, Button, Chip } from '@mui/material';
-import FlexCenter from '../components/layouts/flex/FlexCenter';
 import FlexColumnCenter from '../components/layouts/flex/FlexColumnCenter';
 import { Payment as PaymentIcon, Add as AddIcon } from '@mui/icons-material';
 

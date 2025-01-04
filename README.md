@@ -10,15 +10,20 @@ ________________________________________________________________________________
 This project is a fully functional e-commerce webshop built with modern technologies to provide an excellent user experience for both customers and sellers. It includes features for managing products, users, and shopping carts, along with an intuitive interface and strong security mechanisms.
 
 ## Functionality:
-Seller Management:
+Seller Management: <br>
 CRUD for Sellers: Sellers can manage their profiles, products, and other related data through a user-friendly interface. They can create, read, update, and delete their product listings. <br>
-User Cart Management:
+<br>
+User Cart Management: <br>
 CRUD for User Cart: Users can manage their shopping carts by adding, updating, or removing products. The cart system is designed for ease of use and ensures a seamless shopping experience. <br>
-Product Management:
-Product Sorting: Users can sort products based on various criteria such as price, popularity, categories, rating, and more to find what they need quickly. <br>
-Product Searching: A powerful search functionality allows users to find products by name, category, or other relevant attributes. <br>
-Product Filtering: Users can filter products by different parameters like category, price range, brand, and more to narrow down their choices. <br>
+<br>
+Product Management: <br>
+Product Sorting: <br> Users can sort products based on various criteria such as price, popularity, categories, rating, and more to find what they need quickly. <br>
+Product Searching: <br> A powerful search functionality allows users to find products by name, category, or other relevant attributes. <br>
+Product Filtering: <br> Users can filter products by different parameters like category, price range, brand, and more to narrow down their choices. <br>
+<br>
 UI Customization:
-UI Theme Mode Change: Users can toggle between light and dark mode for a personalized and comfortable browsing experience, regardless of the time of day. <br>
-Authentication & Security:
-JWT-based Authentication & Authorization: Secure user login and access control are implemented with JSON Web Tokens (JWT), ensuring only authorized users can perform specific actions (e.g., manage the cart or access the seller dashboard). <br>
+UI Theme Mode Change: <br> Users can toggle between light and dark mode for a personalized and comfortable browsing experience, regardless of the time of day. <br>
+<br>
+Authentication & Security: <br>
+JWT-based Authentication & Authorization: <br> Secure user login and access control are implemented with JSON Web Tokens (JWT), ensuring only authorized users can perform specific actions (e.g., manage the cart or access the seller dashboard). <br>
+<br>

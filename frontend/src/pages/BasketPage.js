@@ -1,4 +1,4 @@
-import { Box, Button, Typography, IconButton, Divider, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Avatar, Drawer, styled, Menu, MenuItem, SpeedDial, SpeedDialAction } from "@mui/material";
+import { Box, Button, Typography, IconButton, Divider, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Avatar, Drawer, styled, SpeedDial, SpeedDialAction } from "@mui/material";
 import { deleteProductFromCart, fetchUserCartProducts } from "../utils/fetchProducts";
 import FlexSpaceBetween from "../components/layouts/flex/FlexSpaceBetween";
 import FlexCenter from "../components/layouts/flex/FlexCenter";
