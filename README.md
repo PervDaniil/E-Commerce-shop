@@ -3,6 +3,8 @@ ________________________________________________________________________________
 
 ![Снимок экрана 2025-01-02 023131](https://github.com/user-attachments/assets/5dde58a4-6d85-4aef-ab17-2fbd1197229e)
 ____________________________________________________________________________________________________________________________________
+![Снимок экрана 2025-01-02 021816](https://github.com/user-attachments/assets/dd4aaaac-6787-4de1-ba68-e4f6d4a2ce0e)
+____________________________________________________________________________________________________________________________________
 
 # E-Commerce Webshop Project
 This project is a fully functional e-commerce webshop built with modern technologies to provide an excellent user experience for both customers and sellers. It includes features for managing products, users, and shopping carts, along with an intuitive interface and strong security mechanisms.
