@@ -36,7 +36,7 @@ export default function ThemeProvider({ children }) {
             },
         },
         typography: {
-            fontFamily: 'Poppins'
+            fontFamily: 'Montserrat'
         }
     })
 

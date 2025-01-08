@@ -35,7 +35,7 @@ export default function Header() {
             <Toolbar>
                 <Box className="logo">
                     <Typography variant="h5" fontFamily="Azonix">
-                        Logo
+                        E-WSKG
                     </Typography>
                 </Box>
                 <FlexCenter styles={{ flex: 1, gap: '0 2em' }}>

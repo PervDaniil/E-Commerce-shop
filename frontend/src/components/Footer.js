@@ -58,7 +58,7 @@ export default function Footer() {
                         </IconButton>
                 </FlexCenter>
                 <FlexCenter>
-                    <Typography variant="body1" color="textSecondary">&copy; 2024 E-WSKG. All Rights Reserved</Typography>
+                    <Typography variant="body1" color="textSecondary">&copy; 2025 E-WSKG. All Rights Reserved</Typography>
                 </FlexCenter>
             </Box>
         </Box>
