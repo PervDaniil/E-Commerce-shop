@@ -266,10 +266,10 @@ const CardsGridLayout = ({ productsFilterOptions }) => {
                 <CircularProgress />
             </Backdrop>
             <Box>
-                <GridLayout styles={{ minHeight: '100vh', width: '100%', gap: '1em 1.5em', p: 2 }}>
+                <GridLayout columnWidth="320px" styles={{ minHeight: '100vh', width: '100%', p: 2 }}>
                     {products.map(product => (
                         <>
-                            <Card sx={{ height: '365px', width: '300px' }}>
+                            <Card sx={{ height: '370px', width: '320px', boxShadow: 10 }}>
                                 <CardMedia sx={{ height: '200px' }}>
                                     <Box component="img" src={product.image} loading="lazy"
                                         sx={{ objectFit: 'cover', objectPosition: 'center', width: '100%', height: '100%' }} />
@@ -286,7 +286,7 @@ const CardsGridLayout = ({ productsFilterOptions }) => {
                                     <Typography variant="body2" color="primary">{product.price}$</Typography>
                                 </CardContent>
                                 <CardActions>
-                                    <FlexSpaceEvenly styles={{ width: '100%', gap: '0 1em'}}>
+                                    <FlexSpaceEvenly styles={{ width: '100%', gap: '0em'}}>
                                         <Button
                                             variant="outlined"
                                             endIcon={<ShopIcon />}
