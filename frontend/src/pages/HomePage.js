@@ -13,7 +13,7 @@ export default function HomePage() {
         <React.Fragment>
             <Header />
             <Box className="HeadSection" sx={{ py: 7.5 }}>
-                <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', background: 'linear-gradient(90deg, #0a0a0a, rgb(67, 66, 64))' }}>
+                <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundImage: 'url("https://static.vecteezy.com/system/resources/previews/007/544/405/non_2x/silver-flowing-wave-design-on-dark-background-free-vector.jpg")'}}>
                     <motion.div
                         initial={{ opacity: 0, x: 200 }}
                         animate={{ opacity: 1, x: 0 }}
