@@ -5,25 +5,30 @@ ________________________________________________________________________________
 ____________________________________________________________________________________________________________________________________
 ![Снимок экрана 2025-01-08 221702](https://github.com/user-attachments/assets/a36accac-36d9-4af9-9e7b-6a32f3fe999b)
 ____________________________________________________________________________________________________________________________________
+# E-Commerce Webshop Project (E-WSKG)
 
-# E-Commerce Webshop Project
-This project is a fully functional e-commerce webshop built with modern technologies to provide an excellent user experience for both customers and sellers. It includes features for managing products, users, and shopping carts, along with an intuitive interface and strong security mechanisms.
+This project is a fully functional e-commerce webshop built using modern technologies to provide a seamless and secure shopping experience for both customers and sellers. It includes comprehensive features for managing products, user profiles, and shopping carts, with an intuitive user interface and robust security protocols.
 
-## Functionality:
-Seller Management: <br>
-CRUD for Sellers: Sellers can manage their profiles, products, and other related data through a user-friendly interface. They can create, read, update, and delete their product listings. <br>
-<br>
-User Cart Management: <br>
-CRUD for User Cart: Users can manage their shopping carts by adding, updating, or removing products. The cart system is designed for ease of use and ensures a seamless shopping experience. <br>
-<br>
-Product Management: <br>
-Product Sorting: <br> Users can sort products based on various criteria such as price, popularity, categories, rating, and more to find what they need quickly. <br>
-Product Searching: <br> A powerful search functionality allows users to find products by name, category, or other relevant attributes. <br>
-Product Filtering: <br> Users can filter products by different parameters like category, price range, brand, and more to narrow down their choices. <br>
-<br>
-UI Customization:
-UI Theme Mode Change: <br> Users can toggle between light and dark mode for a personalized and comfortable browsing experience, regardless of the time of day. <br>
-<br>
-Authentication & Security: <br>
-JWT-based Authentication & Authorization: <br> Secure user login and access control are implemented with JSON Web Tokens (JWT), ensuring only authorized users can perform specific actions (e.g., manage the cart or access the seller dashboard). <br>
-<br>
+## Key Features
+
+### Seller Management
+- **Seller Profile Management**: Sellers can easily create, read, update, and delete their profiles, manage product listings, and handle other related data through an intuitive, user-friendly interface.
+
+### User Cart Management
+- **CRUD for User Cart**: Users can efficiently manage their shopping carts, adding, updating, or removing products as needed. The cart system is designed for a smooth and hassle-free shopping experience.
+
+### Product Management
+- **Product Sorting**: Users can sort products by various criteria such as price, popularity, categories, ratings, and more to quickly find what they’re looking for.
+- **Product Searching**: A robust search feature allows users to find products by name, category, or other attributes, making product discovery fast and intuitive.
+- **Product Filtering**: Users can filter products based on multiple parameters including category, price range, brand, and more, helping them narrow down their choices with ease.
+
+### UI Customization
+- **Theme Mode Toggle**: Users can switch between light and dark modes, ensuring a personalized and comfortable browsing experience at any time of the day or night.
+
+### Authentication & Security
+- **JWT Authentication & Authorization**: Secure login and access control are powered by JSON Web Tokens (JWT). This ensures that only authorized users can perform specific actions, such as managing their cart or accessing seller dashboards.
+
+## Tech Stack
+- **Frontend**: React, Material UI (MUI), Framer Motion, Swiper
+- **Backend**: Django, Django Rest Framework (DRF), SimpleJWT
+- **Fullstack Development**: Full-stack integration for smooth client-server interaction
